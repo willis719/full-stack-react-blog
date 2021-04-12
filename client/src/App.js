@@ -19,6 +19,8 @@ import {
 import Menu from '@material-ui/icons/Menu';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './redux/actions';
+import { useEffect } from 'react';
+import Blog from './pages/Blog';
 
 function App() {
 
@@ -36,7 +38,17 @@ function App() {
           history.push('/login')
         }
       })
-  }
+  };
+
+  useEffect(() => {
+    fetch('/api/v1/users/current')
+      .then(res => res.json())
+      .then(data => {
+        if (!data.error) {
+          dispatch(setUser(data))
+        }
+      })
+  }, [dispatch]);
 
 
   return (
@@ -81,6 +93,9 @@ function App() {
             </Route>
             <Route path="/register">
               <Register />
+            </Route>
+            <Route path="/blog">
+              <Blog />
             </Route>
           </Switch>
         </Container>
