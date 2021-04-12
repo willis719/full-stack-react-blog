@@ -88,8 +88,16 @@ router.post('/login', async (req, res) => {
   // store user info in session
   req.session.user = user;
 
+  // shorter way to do what starts on line 96
+  // const userResponse = user;
+  // delete user.password
+
   // respond with user info
-  res.json(user)
+  res.json({
+    id: user.id,
+    username: user.username,
+    updatedAt: user.updatedAt,
+  })
 });
 
 router.get('/logout', (req, res) => {

@@ -32,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 app.use('/', indexRouter);
 app.use('/api/v1/users', usersRouter); //Makes versions of the api
 
+// send all requests to react index.html
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
 })
