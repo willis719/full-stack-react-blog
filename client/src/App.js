@@ -1,6 +1,5 @@
 import './App.css';
 import {
-  BrowserRouter as Router,
   NavLink,
   Route,
   Switch,
@@ -22,6 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './redux/actions';
 
 function App() {
+
   const user = useSelector((state) => state.user)
   const dispatch = useDispatch();
   const history = useHistory()
@@ -32,7 +32,7 @@ function App() {
       .then(data => {
         if (data.success) {
           alert(data.success);
-          dispatch(setUser());
+          dispatch(setUser(null));
           history.push('/login')
         }
       })
@@ -41,7 +41,6 @@ function App() {
 
   return (
     <div className="App">
-      <Router>
         <AppBar position="static">
           <Toolbar>
             <IconButton edge="start" color="inherit" aria-label="menu">
@@ -85,7 +84,6 @@ function App() {
             </Route>
           </Switch>
         </Container>
-      </Router>
     </div>
   );
 }
