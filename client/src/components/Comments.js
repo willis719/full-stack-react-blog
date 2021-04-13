@@ -40,7 +40,10 @@ export default function Comments(props) {
           alert(data.error);
         } else {
           alert('Comment Submitted');
+          setText('')
+          setShowForm(false)
           getComments();
+
         }
       });
   };
@@ -52,7 +55,7 @@ export default function Comments(props) {
         {
           comments.map(comment => {
             return (
-              <div>
+              <div key={comment.id}>
                 <p>{comment.text}</p>
                 <h6>{comment.UserId}</h6>
               </div>
