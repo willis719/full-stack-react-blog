@@ -22,6 +22,7 @@ function App() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [userStatus, setUserStatus] = useState('LOADING');
+  
   const logout = () => {
     fetch('/api/v1/users/logout')
       .then((res) => res.json())
